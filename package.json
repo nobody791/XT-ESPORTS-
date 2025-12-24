@@ -8,6 +8,9 @@
     "dev": "nodemon server.js",
     "create-admin": "node scripts/create_admin.js"
   },
+  "engines": {
+    "node": "^18.0.0"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
