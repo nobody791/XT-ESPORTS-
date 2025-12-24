@@ -1,0 +1,20 @@
+<%- include('../layout', { title: 'Admin Dashboard' }) %>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Admin Dashboard</h2>
+  <a class="btn btn-primary" href="/admin/tournaments">Manage Tournaments</a>
+</div>
+<div class="row">
+  <% tournaments.forEach(t => { %>
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        <% if (t.banner) { %>
+          <img src="<%= t.banner %>" class="card-img-top" />
+        <% } %>
+        <div class="card-body">
+          <h5 class="card-title"><%= t.name %></h5>
+          <p class="card-text"><strong>Game:</strong> <%= t.game %></p>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

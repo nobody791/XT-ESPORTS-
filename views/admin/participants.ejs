@@ -1,0 +1,40 @@
+<%- include('../layout', { title: 'Registrations' }) %>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Registrations</h2>
+  <a class="btn btn-secondary" href="/admin">Back</a>
+</div>
+<div class="card p-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Team / Leader</th>
+        <th>Tournament</th>
+        <th>In-game</th>
+        <th>Paid</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% participants.forEach(p => { %>
+        <tr>
+          <td><%= p.id %></td>
+          <td>
+            <strong><%= p.team_name %></strong><br>
+            <small><%= p.leader_name %> • <%= p.leader_phone %> • <%= p.leader_email %></small>
+          </td>
+          <td><%= p.tournament_name %></td>
+          <td><%= p.ingame || '-' %></td>
+          <td><%= p.paid ? 'Yes' : 'No' %></td>
+          <td>
+            <% if (!p.paid) { %>
+              <form method="post" action="/admin/participants/<%= p.id %>/verify" style="display:inline">
+                <button class="btn btn-sm btn-success">Verify</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

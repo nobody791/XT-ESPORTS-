@@ -1,0 +1,30 @@
+<%- include('layout', { title: 'Home' }) %>
+<% layout('layout') -%>
+<div class="row">
+  <div class="col-md-8">
+    <h1>Upcoming Tournaments</h1>
+    <div class="row">
+      <% tournaments.forEach(t => { %>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100 shadow-sm">
+            <% if (t.banner) { %>
+              <img src="<%= t.banner %>" class="card-img-top" alt="banner">
+            <% } %>
+            <div class="card-body">
+              <h5 class="card-title"><%= t.name %></h5>
+              <p class="card-text"><strong>Game:</strong> <%= t.game %></p>
+              <p class="card-text"><strong>Entry Fee:</strong> $<%= (t.entry_fee/100).toFixed(2) %></p>
+              <a href="/tournaments/<%= t.id %>" class="btn btn-primary">Register</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3">
+      <h5>About</h5>
+      <p>Premium e-Sports association platform — tournaments, payments, and admin management.</p>
+    </div>
+  </div>
+</div>

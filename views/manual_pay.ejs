@@ -1,0 +1,26 @@
+<%- include('layout', { title: 'Manual Payment' }) %>
+<div class="card p-4 shadow-sm">
+  <h3>Manual Payment for <%= tournament.name %></h3>
+  <p>Please pay the entry fee via UPI or QR shown below, then upload the payment screenshot and transaction ID.</p>
+  <% if (settings && settings.payment_qr) { %>
+    <div class="mb-3"><img src="<%= settings.payment_qr %>" style="max-width:320px; height:auto; object-fit:contain;"></div>
+  <% } %>
+  <% if (settings && settings.upi) { %>
+    <div class="mb-3"><strong>UPI:</strong> <%= settings.upi %></div>
+  <% } %>
+  <form method="post" action="/tournaments/<%= tournament.id %>/manual-pay" enctype="multipart/form-data">
+    <input type="hidden" name="participant_id" value="<%= participantId %>">
+    <div class="mb-3">
+      <label class="form-label">Transaction ID / UPI Reference</label>
+      <input name="tx_id" class="form-control" placeholder="UPI txn id or reference">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Upload payment screenshot</label>
+      <input name="proof" type="file" class="form-control">
+    </div>
+    <div class="mb-3">
+      <a class="btn btn-outline-secondary" target="_blank" href="https://chat.whatsapp.com/KWLpkWsD9wOBcPINmFCbIx">Join WhatsApp Group</a>
+      <button class="btn btn-success">Upload Proof</button>
+    </div>
+  </form>
+</div>
